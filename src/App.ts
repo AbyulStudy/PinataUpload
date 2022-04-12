@@ -1,9 +1,6 @@
 import app from "./config/express";
 
-app.get("/", (req, res) => {
-  res.send("test");
-});
-
-app.listen(3100, () => {
+const PORT: number = 3100;
+app.listen(PORT, () => {
   console.log("server");
 });
