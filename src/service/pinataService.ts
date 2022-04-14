@@ -8,7 +8,8 @@ const pinata = pinataSDK(
   `${process.env.PINATA_API_KEY}`,
   `${process.env.PINATA_API_SECRET}`
 );
-
+const getFileName = (filePath: string) =>
+  (filePath && filePath.replace(/^.*[\\/]/, "")) || "";
 export default class PinataService {
   static async apiKeyTest() {
     return pinata;
