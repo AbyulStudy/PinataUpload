@@ -24,4 +24,9 @@ export default class PinataController extends baseController {
         ApiResponse.error(res, error);
       });
   };
+
+  static uploadFilePage: IController = async (req: Request, res: Response) => {
+    const { description, name, supply }: INFTMetadataDTO = req.body;
+    const fileInfos = JSON.parse(JSON.stringify(req.files));
+  };
 }
