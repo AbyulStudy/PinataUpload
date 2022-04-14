@@ -13,4 +13,12 @@ export default class PinataService {
   static async apiKeyTest() {
     return pinata;
   }
+
+  static async imgUploadPinata(imgFilePath: string) {
+    console.log(`[imgUploadPinata] ${imgFilePath}  Upload....`);
+    const filePath = path.join(__dirname, "../../" + imgFilePath);
+    const stream = fs.createReadStream(filePath);
+
+    return await pinata.pinFileToIPFS(stream);
+  }
 }
