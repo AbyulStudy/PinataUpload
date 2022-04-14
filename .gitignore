@@ -1,3 +1,6 @@
+# backup file
+*.back
+
 # compiled output
 /dist
 /uploadFiles
