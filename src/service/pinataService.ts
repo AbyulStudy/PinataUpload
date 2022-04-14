@@ -22,4 +22,18 @@ export default class PinataService {
 
     return await pinata.pinFileToIPFS(stream);
   }
+
+  static async metaDataUploadPinata(metadataFilePath: string) {
+    console.log(`[metaDataUploadPinata] ${metadataFilePath} Upload...`);
+    const filePath = path.join(__dirname, "../../" + metadataFilePath);
+    const stream = fs.createReadStream(filePath);
+    const fileName = getFileName(filePath);
+
+    return await pinata.pinJSONToIPFS(stream, {
+      pinataMetadata: { name: fileName },
+      pinataOptions: {
+        cidVersion: 0,
+      },
+    });
+  }
 }
