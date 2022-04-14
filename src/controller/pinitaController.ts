@@ -47,6 +47,32 @@ export default class PinataController extends baseController {
       );
       let thumbName = fileInfos.thumbnailImg[0].filename;
       let thumbIpfsHash = thumbReult.IpfsHash;
+
+      //   metadata PinataUpload
+      let metadata = {
+        pinataMetadata: {
+          name: `${name}_METADATA`,
+        },
+        pinataContent: {
+          description,
+          thumb: `ipfs://${thumbIpfsHash}/${thumbName}`,
+          image: `ipfs://${mainIpfsHash}/${originalName}`,
+          external_url: "https://berryauction.bitberryswap.org/",
+          // supply [ bbn에는 존재하나 cheil에는 없음 ]
+        },
+      };
+      let metaJsonFileName =
+        originalName.substring(0, originalName.indexOf(".")) + ".json";
+      let metaJsonPath = `uploadFiles\\${metaJsonFileName}`;
+      fs.writeFile(
+        "./uploadFiles/" + metaJsonFileName,
+        JSON.stringify(metadata),
+        (err) => {}
+      );
+
+      let metaResult = await PinataService.metaDataUploadPinata(metaJsonPath);
+      const { IpfsHash } = metaResult;
+      res.json(IpfsHash);
     } catch (err: any) {
       let error = {
         status: 401,
