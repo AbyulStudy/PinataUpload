@@ -9,9 +9,9 @@ declare global {
       PINATA_API_SECRET?: string;
       PINATA_JWT?: string;
 
-      UPLOAD_DIR: string;
-      UPLOAD_MAXSIZE: string;
-      UPLOAD_DESCRIPTION: string;
+      UPLOAD_DIR: string; // Multer Upload Directory Path
+      UPLOAD_MAXSIZE: string; // Multer Upload MaxSize
+      UPLOAD_DESCRIPTION: string; // example.(maxsize 10M = 10*1024*1024 = 104857600)
     }
   }
 }
